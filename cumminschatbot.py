@@ -54,8 +54,8 @@ def is_bye(message):
 
 def is_start(message):
     tokens = [word.lower() for word in message.strip().split()]
-    return any(g in tokens
-               for g in ['help', 'start'])
+    if(token in ['help', 'Help', 'start', 'Start']):
+        return True
 
 def say_hi(user_mention):
     """Say Hi to a user by formatting their mention"""
