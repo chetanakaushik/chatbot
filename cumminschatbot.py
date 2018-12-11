@@ -1,7 +1,7 @@
 import os, slackclient, time
 import random
 
-# delay in seconds before checking for new events 
+# delay in seconds before checking for new events
 SOCKET_DELAY = 1
 # slackbot environment variables
 VALET_SLACK_NAME = os.environ.get('SLACK_BOT_NAME')
@@ -39,8 +39,8 @@ def is_for_me(event):
         channel = event.get('channel')
         if valet_slack_mention in text.strip().split():
             return True
-        
-        
+
+
 def is_hi(message):
     tokens = [word.lower() for word in message.strip().split()]
     return any(g in tokens
@@ -69,6 +69,15 @@ def say_bye(user_mention):
                                        'Au revoir!'])
     return response_template.format(mention=user_mention)
 
+def getStarted(message):
+    tokens = [word.lower() for word in message.strip().split()]
+    return any(g in tokens
+               for g in ['Start', 'Help'])
+
+def say_getStarted(user_mention):
+    """Reply to get started"""
+    response_template = 'Let us get you started. Ask me any question about Cummins or services we provide. #digitalTransformation'
+    return response_template.format(mention=user_mention)
 
 def handle_message(message, user, channel):
     if is_hi(message):
@@ -77,7 +86,9 @@ def handle_message(message, user, channel):
     elif is_bye(message):
         user_mention = get_mention(user)
         post_message(message=say_bye(user_mention), channel=channel)
-
+    elif getStarted(message):
+        user_mention = get_mention(user)
+        post_message(message=say_getStarted(user_mention), channel=channel)
 
 def run():
     if valet_slack_client.rtm_connect():
