@@ -79,9 +79,9 @@ def say_start(user_mention):
     response_template = 'Let us get you started. Ask me any question about Cummins. #digitalTransformation'
     return response_template.format(mention=user_mention)
 
-def is_whoareyou(message):
-    if(message in ['who are you', 'Who are you?', 'who are you?']):
-        return message
+def is_whoareyou(message1):
+    if(message1 in ['who are you', 'Who are you?', 'who are you?']):
+        return message1
 
 def say_whoareyou(user_mention):
     """Say Start to a user"""
