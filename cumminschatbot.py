@@ -52,6 +52,11 @@ def is_bye(message):
     return any(g in tokens
                for g in ['bye', 'goodbye', 'revoir', 'adios', 'later', 'cya'])
 
+def is_start(message):
+    tokens = [word.lower() for word in message.strip().split()]
+    return any(g in tokens
+               for g in ['help', 'start'])
+
 def say_hi(user_mention):
     """Say Hi to a user by formatting their mention"""
     response_template = random.choice(['Sup, {mention}...',
@@ -69,14 +74,12 @@ def say_bye(user_mention):
                                        'Au revoir!'])
     return response_template.format(mention=user_mention)
 
-def is_getStarted(message):
-    tokens = [word.lower() for word in message.strip().split()]
-    return any(g in tokens
-               for g in ['Start', 'Help'])
-
-def say_Start(user_mention):
-    """Reply to get started"""
-    response_template = 'Let us get you started. Ask me any question about Cummins or services we provide. #digitalTransformation'
+def say_start(user_mention):
+    """Say Goodbye to a user"""
+    response_template = random.choice(['see you later, alligator...',
+                                       'adios amigo',
+                                       'Bye {mention}!',
+                                       'Au revoir!'])
     return response_template.format(mention=user_mention)
 
 def handle_message(message, user, channel):
@@ -86,9 +89,10 @@ def handle_message(message, user, channel):
     elif is_bye(message):
         user_mention = get_mention(user)
         post_message(message=say_bye(user_mention), channel=channel)
-    elif is_getStarted(message):
+    elif say_start(message):
         user_mention = get_mention(user)
-        post_message(message=say_Start(user_mention), channel=channel)
+        post_message(message=say_start(user_mention), channel=channel)
+
 
 def run():
     if valet_slack_client.rtm_connect():
