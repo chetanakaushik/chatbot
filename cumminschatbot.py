@@ -79,6 +79,16 @@ def say_start(user_mention):
     response_template = 'Let us get you started. Ask me any question about Cummins. #digitalTransformation'
     return response_template.format(mention=user_mention)
 
+def is_whoareyou(message):
+    if(message in ['who are you', 'Who are you?', 'who are you?']):
+        return True
+
+def say_whoareyou(user_mention):
+    """Say Start to a user"""
+    response_template = 'I am a Slack ChatBot. I try to answer questions. Sometimes I get them right, other times I need human help. I am designed to get smarter over time. How may I help you today?'
+    return response_template.format(mention=user_mention)
+
+
 def handle_message(message, user, channel):
     if is_hi(message):
         user_mention = get_mention(user)
@@ -89,6 +99,9 @@ def handle_message(message, user, channel):
     elif say_start(message):
         user_mention = get_mention(user)
         post_message(message=say_start(user_mention), channel=channel)
+    elif is_whoareyou(message):
+        user_mention = get_mention(user)
+        post_message(message=say_whoareyou(user_mention), channel=channel)
 
 
 def run():
