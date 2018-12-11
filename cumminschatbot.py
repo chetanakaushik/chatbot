@@ -81,7 +81,7 @@ def say_start(user_mention):
 
 def is_whoareyou(message):
     if(message in ['who are you', 'Who are you?', 'who are you?']):
-        return True
+        return message
 
 def say_whoareyou(user_mention):
     """Say Start to a user"""
