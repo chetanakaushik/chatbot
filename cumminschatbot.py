@@ -75,11 +75,8 @@ def say_bye(user_mention):
     return response_template.format(mention=user_mention)
 
 def say_start(user_mention):
-    """Say Goodbye to a user"""
-    response_template = random.choice(['see you later, alligator...',
-                                       'adios amigo',
-                                       'Bye {mention}!',
-                                       'Au revoir!'])
+    """Say Start to a user"""
+    response_template = 'Let us get you started. Ask me any question about Cummins. #digitalTransformation'
     return response_template.format(mention=user_mention)
 
 def handle_message(message, user, channel):
