@@ -87,6 +87,11 @@ def say_whoareyou(user_mention):
     response_template = 'I am a Slack ChatBot. I try to answer questions. Sometimes I get them right, other times I need human help. I am designed to get smarter over time. How may I help you today?'
     return response_template.format(mention=user_mention)
 
+def say_apologize(user_mention):
+    """Apologize to a user"""
+    response_template = 'My apologies. I did not understand the question. Please try again with one keyword and let me see if I can answer that for you.'
+    return response_template.format(mention=user_mention)
+
 
 def handle_message(message, user, channel):
     if is_hi(message):
@@ -101,6 +106,9 @@ def handle_message(message, user, channel):
     elif say_start(message):
         user_mention = get_mention(user)
         post_message(message=say_start(user_mention), channel=channel)
+    else:
+        user_mention = get_mention(user)
+        post_message(message=say_apologize(user_mention), channel=channel)
 
 
 def run():
