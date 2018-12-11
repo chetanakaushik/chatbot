@@ -83,7 +83,7 @@ def is_whoareyou(message1):
         return message1
 
 def say_whoareyou(user_mention):
-    """Say Start to a user"""
+    """Say Who are you to a user"""
     response_template = 'I am a Slack ChatBot. I try to answer questions. Sometimes I get them right, other times I need human help. I am designed to get smarter over time. How may I help you today?'
     return response_template.format(mention=user_mention)
 
@@ -95,12 +95,12 @@ def handle_message(message, user, channel):
     elif is_bye(message):
         user_mention = get_mention(user)
         post_message(message=say_bye(user_mention), channel=channel)
-    elif say_start(message):
-        user_mention = get_mention(user)
-        post_message(message=say_start(user_mention), channel=channel)
     elif is_whoareyou(message):
         user_mention = get_mention(user)
         post_message(message=say_whoareyou(user_mention), channel=channel)
+    elif say_start(message):
+        user_mention = get_mention(user)
+        post_message(message=say_start(user_mention), channel=channel)
 
 
 def run():
