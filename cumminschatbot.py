@@ -73,7 +73,7 @@ def say_bye(user_mention):
                                        'Au revoir!'])
     return response_template.format(mention=user_mention)
 
-def say_start(user_mention):
+def say_getHelp(user_mention):
     """Say Start to a user"""
     response_template = 'Let us get you started. Ask me any question about Cummins. #digitalTransformation'
     return response_template.format(mention=user_mention)
@@ -103,9 +103,9 @@ def handle_message(message, user, channel):
     elif is_whoareyou(message):
         user_mention = get_mention(user)
         post_message(message=say_whoareyou(user_mention), channel=channel)
-    elif say_start(message):
-        user_mention = get_mention(user)
-        post_message(message=say_start(user_mention), channel=channel)
+    # elif say_start(message):
+    #     user_mention = get_mention(user)
+    #     post_message(message=say_getHelp(user_mention), channel=channel)
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
