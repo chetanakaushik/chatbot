@@ -69,12 +69,12 @@ def say_bye(user_mention):
                                        'Au revoir!'])
     return response_template.format(mention=user_mention)
 
-def getStarted(message):
+def is_getStarted(message):
     tokens = [word.lower() for word in message.strip().split()]
     return any(g in tokens
                for g in ['Start', 'Help'])
 
-def say_getStarted(user_mention):
+def say_Start(user_mention):
     """Reply to get started"""
     response_template = 'Let us get you started. Ask me any question about Cummins or services we provide. #digitalTransformation'
     return response_template.format(mention=user_mention)
@@ -86,9 +86,9 @@ def handle_message(message, user, channel):
     elif is_bye(message):
         user_mention = get_mention(user)
         post_message(message=say_bye(user_mention), channel=channel)
-    elif getStarted(message):
+    elif is_getStarted(message):
         user_mention = get_mention(user)
-        post_message(message=say_getStarted(user_mention), channel=channel)
+        post_message(message=say_Start(user_mention), channel=channel)
 
 def run():
     if valet_slack_client.rtm_connect():
