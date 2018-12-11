@@ -10,5 +10,10 @@ print(VALET_SLACK_TOKEN)
 is_ok = valet_slack_client.api_call("users.list").get('ok')
 print(is_ok)
 
-print ("hello world")
+# find the id of our slack bot
+if(is_ok):
+    for user in valet_slack_client.api_call("users.list").get('members'):
+        if user.get('name') == VALET_SLACK_NAME:
+            print(user.get('id'))
+
 
