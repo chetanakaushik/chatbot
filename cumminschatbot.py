@@ -96,7 +96,7 @@ def handle_message(message, user, channel):
     elif is_bye(message):
         user_mention = get_mention(user)
         post_message(message=say_bye(user_mention), channel=channel)
-    elifsay_start(message):
+    elif say_start(message):
         user_mention = get_mention(user)
         post_message(message=say_start(user_mention), channel=channel)
     elif is_whoareyou(message):
