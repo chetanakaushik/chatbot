@@ -54,8 +54,8 @@ def is_bye(message):
 
 def is_start(message):
     tokens = [word.lower() for word in message.strip().split()]
-    if(token in ['help', 'Help', 'start', 'Start']):
-        return any(g in tokens)
+    return any(g in tokens
+               for g in ['Help', 'Start'])
 
 def say_hi(user_mention):
     """Say Hi to a user by formatting their mention"""
@@ -96,9 +96,9 @@ def handle_message(message, user, channel):
     elif is_bye(message):
         user_mention = get_mention(user)
         post_message(message=say_bye(user_mention), channel=channel)
-    # elif say_start(message):
-    #     user_mention = get_mention(user)
-    #     post_message(message=say_start(user_mention), channel=channel)
+    elifsay_start(message):
+        user_mention = get_mention(user)
+        post_message(message=say_start(user_mention), channel=channel)
     elif is_whoareyou(message):
         user_mention = get_mention(user)
         post_message(message=say_whoareyou(user_mention), channel=channel)
