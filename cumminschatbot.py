@@ -127,10 +127,6 @@ def handle_message(message, user, channel):
     elif is_report(message):
         user_mention = get_mention(user)
         post_message(message=say_report(user_mention), channel=channel)
-
-    # elif say_start(message):
-    #     user_mention = get_mention(user)
-    #     post_message(message=say_getHelp(user_mention), channel=channel)
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
