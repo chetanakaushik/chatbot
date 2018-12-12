@@ -92,12 +92,12 @@ def say_apologize(user_mention):
     response_template = 'My apologies. I did not understand the question. Please try again with one keyword and let me see if I can answer that for you.'
     return response_template.format(mention=user_mention)
 
-def is_report(message1):
-    if(message1 in ['How do I obtain copies of the Annual report for Cummins?']):
-        return message1
+def is_report(message3):
+    if(message1 in ['How do I obtain copies of the Annual report for Cummins']):
+        return message3
 
 def say_report(user_mention):
-    """Say Who are you to a user"""
+    """Annual Report"""
     response_template = 'Go to investor.cummins.com and then on the left-hand navigation menu, under Contact Information click on Information Request, complete and submit the electronic form to have a copy of the Annual Report mailed to you promptly, or click on Annual Reports for an electronic copy.'
     return response_template.format(mention=user_mention)
 
@@ -133,12 +133,12 @@ def handle_message(message, user, channel):
     elif is_quarterly(message):
         user_mention = get_mention(user)
         post_message(message=say_quarterly(user_mention), channel=channel)
-    elif is_report(message):
-        user_mention = get_mention(user)
-        post_message(message=say_report(user_mention), channel=channel)
     elif is_stock(message):
         user_mention = get_mention(user)
         post_message(message=say_stock(user_mention), channel=channel)
+    elif is_report(message):
+        user_mention = get_mention(user)
+        post_message(message=say_report(user_mention), channel=channel)
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
