@@ -93,7 +93,7 @@ def say_apologize(user_mention):
     return response_template.format(mention=user_mention)
 
 def is_report(message3):
-    if(message1 in ['How do I obtain copies of the Annual report for Cummins']):
+    if(message3 in ['How do I obtain copies of the Annual report for Cummins']):
         return message3
 
 def say_report(user_mention):
