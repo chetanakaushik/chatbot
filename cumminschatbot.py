@@ -139,10 +139,10 @@ def handle_message(message, user, channel):
     elif is_report(message):
         user_mention = get_mention(user)
         post_message(message=say_report(user_mention), channel=channel)
-    elif is_start(message):
+    else:
         user_mention = get_mention(user)
-        post_message(message=say_getHelp(user_mention), channel=channel)
-        
+        post_message(message=say_apologize(user_mention), channel=channel)
+
 def run():
     if valet_slack_client.rtm_connect():
         print('[.] Valet de Machin is ON...')
