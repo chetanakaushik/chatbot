@@ -52,7 +52,7 @@ def is_bye(message):
     return any(g in tokens
                for g in ['bye', 'goodbye', 'revoir', 'adios', 'later', 'cya'])
 
-def is_start(message):
+def is_start(message1):
     if(message1 in ['Help', 'Get Started', 'Start']):
         return message1
 
@@ -139,6 +139,9 @@ def handle_message(message, user, channel):
     elif is_report(message):
         user_mention = get_mention(user)
         post_message(message=say_report(user_mention), channel=channel)
+    elif is_start(message):
+        user_mention = get_mention(user)
+        post_message(message=say_getHelp(user_mention), channel=channel)
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
