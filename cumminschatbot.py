@@ -93,13 +93,23 @@ def say_apologize(user_mention):
     return response_template.format(mention=user_mention)
 
 def is_report(message1):
-    if(message1 in ['How do I obtain copies of the Annual report for Cummins']):
+    if(message1 in ['How do I obtain copies of the Annual report for Cummins?']):
         return message1
 
 def say_report(user_mention):
     """Say Who are you to a user"""
     response_template = 'Go to investor.cummins.com and then on the left-hand navigation menu, under Contact Information click on Information Request, complete and submit the electronic form to have a copy of the Annual Report mailed to you promptly, or click on Annual Reports for an electronic copy.'
     return response_template.format(mention=user_mention)
+
+def is_quarterly(message1):
+    if(message1 in ['Does Cummins publish quarterly reports?']):
+        return message1
+
+def say_quarterly(user_mention):
+    """Say Who are you to a user"""
+    response_template = 'You can view our recent quarterly filings on our website http://investor.cummins.com/phoenix.zhtml?c=112916&p=irol-sec.'
+    return response_template.format(mention=user_mention)
+
 
 def handle_message(message, user, channel):
     if is_hi(message):
@@ -111,9 +121,9 @@ def handle_message(message, user, channel):
     elif is_whoareyou(message):
         user_mention = get_mention(user)
         post_message(message=say_whoareyou(user_mention), channel=channel)
-    elif is_report(message):
+    elif is_quarterly(message):
         user_mention = get_mention(user)
-        post_message(message=say_report(user_mention), channel=channel)
+        post_message(message=say_quarterly(user_mention), channel=channel)
 
     # elif say_start(message):
     #     user_mention = get_mention(user)
