@@ -110,14 +110,15 @@ def say_quarterly(user_mention):
     response_template = 'You can view our recent quarterly filings on our website http://investor.cummins.com/phoenix.zhtml?c=112916&p=irol-sec. Please click on this link.'
     return response_template.format(mention=user_mention)
 
-def is_quarterly(message1):
+def is_stock(message1):
     if(message1 in ['Does Cummins provide a direct stock purchase plan?']):
         return message1
 
-def say_quarterly(user_mention):
+def say_stock(user_mention):
     """Say Who are you to a user"""
     response_template = 'No, Cummins does not have a direct stock purchase plan. However, shareholders of record who participate in the Dividend Reinvestment Plan may elect to purchase additional shares of Cummins stock through an automatic monthly transfer of funds. See Dividend Reinvestment Plan.'
     return response_template.format(mention=user_mention)
+
 
 def handle_message(message, user, channel):
     if is_hi(message):
@@ -135,13 +136,13 @@ def handle_message(message, user, channel):
     elif is_report(message):
         user_mention = get_mention(user)
         post_message(message=say_report(user_mention), channel=channel)
-    elif is_quarterly(message):
+    elif is_stock(message):
         user_mention = get_mention(user)
-        post_message(message=say_quarterly(user_mention), channel=channel)
+        post_message(message=say_stock(user_mention), channel=channel)
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
-        
+
 def run():
     if valet_slack_client.rtm_connect():
         print('[.] Valet de Machin is ON...')
