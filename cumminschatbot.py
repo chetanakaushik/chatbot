@@ -123,26 +123,25 @@ def handle_message(message, user, channel):
     if is_hi(message):
         user_mention = get_mention(user)
         post_message(message=say_hi(user_mention), channel=channel)
-    if is_bye(message):
+    elif is_bye(message):
         user_mention = get_mention(user)
         post_message(message=say_bye(user_mention), channel=channel)
-    if is_whoareyou(message):
+    elif is_whoareyou(message):
         user_mention = get_mention(user)
         post_message(message=say_whoareyou(user_mention), channel=channel)
-    if is_quarterly(message):
+    elif is_quarterly(message):
         user_mention = get_mention(user)
         post_message(message=say_quarterly(user_mention), channel=channel)
-    if is_report(message):
+    elif is_report(message):
         user_mention = get_mention(user)
         post_message(message=say_report(user_mention), channel=channel)
-    if is_quarterly(message):
+    elif is_quarterly(message):
         user_mention = get_mention(user)
         post_message(message=say_quarterly(user_mention), channel=channel)
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
-
-
+        
 def run():
     if valet_slack_client.rtm_connect():
         print('[.] Valet de Machin is ON...')
