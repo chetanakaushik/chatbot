@@ -107,7 +107,7 @@ def is_quarterly(message5):
 
 def say_quarterly(user_mention):
     """Say Who are you to a user"""
-    response_template = 'You can view our recent quarterly filings on our website http://investor.cummins.com/phoenix.zhtml?c=112916&p=irol-sec. Please click on this link.'
+    response_template = 'You can view our recent quarterly filings on our website SEC Filings. Please click on this link.'
     return response_template.format(mention=user_mention)
 
 def is_stock(message1):
@@ -128,6 +128,32 @@ def say_cust(user_mention):
     response_template = 'We have thousands of customers around the world and have developed long-standing business relationships with many of them. We have long-term heavy-duty engine supply agreements with PACCAR, Navistar International, Volvo Trucks North America. We have long-term mid-range supply agreements with PACCAR, as well as with Daimler Trucks North America, Navistar, Ford and MAN. We also have an agreement with Chrysler for supplying the engine for use in Dodge Ram trucks. In our off-highway markets, Cummins has various engine and component supply agreements ranging across our midrange and high-horsepower businesses with Komatsu Ltd., as well as various joint ventures and other license agreements in our Engine, Component and Distribution segments.'
     return response_template.format(mention=user_mention)
 
+def is_founded(message1):
+    if(message1 in ['When was Cummins founded?']):
+        return message1
+
+def say_founded(user_mention):
+    """Say Who are you to a user"""
+    response_template = 'Cummins was founded on February 3, 1919.'
+    return response_template.format(mention=user_mention)
+
+def is_po(message1):
+    if(message1 in ['When did Cummins make its initial public offering?']):
+        return message1
+
+def say_po(user_mention):
+    """Say Who are you to a user"""
+    response_template = 'Cummins stock was first traded publicly in 1947.'
+    return response_template.format(mention=user_mention)
+
+def is_emp(message1):
+    if(message1 in ['How many current employees does Cummins have?']):
+        return message1
+
+def say_emp(user_mention):
+    """Say Who are you to a user"""
+    response_template = 'As of 2017, we had approximately 58,600 employees worldwide.'
+    return response_template.format(mention=user_mention)
 
 def handle_message(message, user, channel):
     if is_hi(message):
@@ -154,6 +180,15 @@ def handle_message(message, user, channel):
     elif is_cust(message):
         user_mention = get_mention(user)
         post_message(message=say_cust(user_mention), channel=channel)
+    elif is_founded(message):
+        user_mention = get_mention(user)
+        post_message(message=say_founded(user_mention), channel=channel)
+    elif is_po(message):
+        user_mention = get_mention(user)
+        post_message(message=say_po(user_mention), channel=channel)
+    elif is_emp(message):
+        user_mention = get_mention(user)
+        post_message(message=say_emp(user_mention), channel=channel)    
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
