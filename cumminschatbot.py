@@ -119,6 +119,15 @@ def say_stock(user_mention):
     response_template = 'No, Cummins does not have a direct stock purchase plan. However, shareholders of record who participate in the Dividend Reinvestment Plan may elect to purchase additional shares of Cummins stock through an automatic monthly transfer of funds. See Dividend Reinvestment Plan.'
     return response_template.format(mention=user_mention)
 
+def is_cust(message1):
+    if(message1 in ['Who are Cummins’ largest customers?']):
+        return message1
+
+def say_cust(user_mention):
+    """Say Who are you to a user"""
+    response_template = 'We have thousands of customers around the world and have developed long-standing business relationships with many of them. We have long-term heavy-duty engine supply agreements with PACCAR, Navistar International, Volvo Trucks North America. We have long-term mid-range supply agreements with PACCAR, as well as with Daimler Trucks North America, Navistar, Ford and MAN. We also have an agreement with Chrysler for supplying the engine for use in Dodge Ram trucks. In our off-highway markets, Cummins has various engine and component supply agreements ranging across our midrange and high-horsepower businesses with Komatsu Ltd., as well as various joint ventures and other license agreements in our Engine, Component and Distribution segments.'
+    return response_template.format(mention=user_mention)
+
 
 def handle_message(message, user, channel):
     if is_hi(message):
@@ -142,6 +151,9 @@ def handle_message(message, user, channel):
     elif is_start(message):
         user_mention = get_mention(user)
         post_message(message=say_getHelp(user_mention), channel=channel)
+    elif is_cust(message):
+        user_mention = get_mention(user)
+        post_message(message=say_cust(user_mention), channel=channel)
     else:
         user_mention = get_mention(user)
         post_message(message=say_apologize(user_mention), channel=channel)
