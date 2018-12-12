@@ -101,9 +101,9 @@ def say_report(user_mention):
     response_template = 'Go to investor.cummins.com and then on the left-hand navigation menu, under Contact Information click on Information Request, complete and submit the electronic form to have a copy of the Annual Report mailed to you promptly, or click on Annual Reports for an electronic copy.'
     return response_template.format(mention=user_mention)
 
-def is_quarterly(message1):
-    if(message1 in ['Does Cummins publish quarterly reports?']):
-        return message1
+def is_quarterly(message5):
+    if(message5 in ['Does Cummins publish quarterly reports?']):
+        return message5
 
 def say_quarterly(user_mention):
     """Say Who are you to a user"""
@@ -139,10 +139,10 @@ def handle_message(message, user, channel):
     elif is_report(message):
         user_mention = get_mention(user)
         post_message(message=say_report(user_mention), channel=channel)
-    else:
+    elif is_start(message):
         user_mention = get_mention(user)
-        post_message(message=say_apologize(user_mention), channel=channel)
-
+        post_message(message=say_getHelp(user_mention), channel=channel)
+        
 def run():
     if valet_slack_client.rtm_connect():
         print('[.] Valet de Machin is ON...')
